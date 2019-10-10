@@ -1,10 +1,11 @@
 <?php
 
-class Database {
+class Database
+{
     private $host = DB_HOST;
     private $user = DB_USER;
     private $pass = DB_PASS;
-    privAte $db_name = DB_NAME;
+    private $db_name = DB_NAME;
 
     private $dbh;
     private $stmt;
@@ -12,17 +13,17 @@ class Database {
     public function __construct()
     {
         // data source name
-        $dsn = 'mysql:host= ' . $this->host . ';dbname=' . $this->db_name;
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
         // parameter konfigurasi dari parameter
         $option = [
-            PDO :: ATTR_PERSISTENT => true,
-            PDO :: ATTR_ERRMODE => PDO ::ERRMODE_EXCEPTION
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
-    
+
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
-        } catch ( PDOException $e){
+        } catch (PDOException $e) {
             die($e->getMessage());
         }
     }
@@ -34,18 +35,18 @@ class Database {
 
     public function bind($param, $value, $type = null)
     {
-        if( is_null($type) ) {
-            switch( true ) {
-                case is_int($value) :
+        if (is_null($type)) {
+            switch (true) {
+                case is_int($value):
                     $type = PDO::PARAM_INT;
                     break;
-                case is_bool($value) :
+                case is_bool($value):
                     $type = PDO::PARAM_BOOL;
                     break;
-                case is_null($value) :
+                case is_null($value):
                     $type = PDO::PARAM_NULL;
                     break;
-                default :
+                default:
                     $type = PDO::PARAM_STR;
             }
         }
@@ -74,5 +75,4 @@ class Database {
     {
         return $this->stmt->rowCount();
     }
-
 }

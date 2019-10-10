@@ -1,3 +1,8 @@
-<h1>About Me</h1>
-<h4>Halo, nama saya <?= $data['nama'] ?>, umur saya <?= $data['umur'] ?> tahun,
-    saya adalah seorang <?= $data['status'] ?>. </h4>
+<div class="container">
+
+
+    <h1 class="mt-4">About Me</h1>
+    <img src=" <?= BASEURL; ?> /img/3.jpg" alt="Marlina Puspita Dewi" width="200" class="rounded-circle shadow">
+    <p>Hallo, nama saya <?= $data['nama']; ?>, status saya sebagai <?= $data['status']; ?>
+        di <?= $data['jurusan']; ?>.</p>
+</div>
